@@ -1412,7 +1412,7 @@ function  AssertNotExist() {
 function  AssertInstalled() {
     local  checkingCommand="$1"
     local  exists=${False}
-    which "${checkingCommand}" > /dev/null  &&  exists=${True}
+    command -v "${checkingCommand}" > /dev/null  &&  exists=${True}
 
     if [ "${exists}" == ${False} ]; then
         Error  "ERROR: Not installed \"${checkingCommand}\" command"
