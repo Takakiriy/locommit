@@ -1,12 +1,8 @@
 Test:
-    OS:
-        Windows:
-        macOS:
-        WSL Ubuntu 20.04:
-        CentOS7 Vagrant:
+    OS: Windows, macOS, WSL Ubuntu 20.04
     Position:
         With ".git":  #// WSL, Windows, macOS
-            WSL:
+            WSL: #keyword: set up locommit in WSL
                 wsl
                 cd  ${HOME}
                 git clone https://github.com/Takakiriy/locommit  -b develop
@@ -27,6 +23,7 @@ Test:
                 ./test-locommit
         With "../.git":  #// WSL, Windows, macOS
             # set up
+                #search: set up locommit in WSL
                 -   cd  ${HOME}
                     mkdir -p  ~/bin/.vscode
                 -   cp  ~/locommit/test/_locommit-set-up.sh  ~/bin/_locommit-set-up.sh
@@ -55,6 +52,7 @@ Test:
                 -   git push
         Without ".git":  #// WSL, Windows, macOS
             # set up in WSL
+                #search: set up locommit in WSL
                 - code  ~/locommit
                 - cp  ~/locommit/test/_locommit-set-up.sh  ~/bin/_locommit-set-up.sh
                 - ~/bin/_locommit-set-up.sh  --transform-to-without-git
