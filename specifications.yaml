@@ -1,3 +1,4 @@
+usage:  #ref: ~/locommit/README.md
 pull command:
     Pull function flow: 
         (root)/.git:  #// [ours .git](currentBranch)
@@ -54,3 +55,4 @@ pull command:
                     mv  ".commit_ours/.git"  "."
             else:
                 echo  'Pull command did not change any files.'
+test:  #ref: ~/locommit/test/README.yaml
