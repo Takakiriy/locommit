@@ -8,6 +8,7 @@ Test:
                 git clone https://github.com/Takakiriy/locommit  -b develop
                 code  locommit
                 cd  test  #// cd __Project__/test
+                sudo apt install -y  zip  #// (or) sudo dnf install -y  zip
                 ./test-locommit
             Windows:
                 bash: |

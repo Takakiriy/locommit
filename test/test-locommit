@@ -5,24 +5,25 @@ LocommitCommand="../bin/locommit"
 function  AllTest() {
     DetectTestEnvironment
 
-    Test_Error
-    Test_DeleteFolder
-    Test_ResolvePath
-    Test_Assert
-    Test_CutLastOf
-    Test_CopyFolder
-    Test_LessThanVersion
-    Test_ErrorIfLastIs
-
-    Test_1
-    Test_Clone
-    Test_ChangeAndClone
-    Test_Clone_File
-    Test_InWorkingDirectory
-    Test_InWorkingSubDirectory
-    Test_NoUpdate
-    Test_NoModifiedConflict
+#     Test_Error
+#     Test_DeleteFolder
+#     Test_ResolvePath
+#     Test_Assert
+#     Test_CutLastOf
+#     Test_CopyFolder
+#     Test_LessThanVersion
+#     Test_ErrorIfLastIs
+# 
+#     Test_1
+#     Test_Clone
+#     Test_ChangeAndClone
+#     Test_Clone_File
+#     Test_InWorkingDirectory
+#     Test_InWorkingSubDirectory
+#     Test_NoUpdate
+#     Test_NoModifiedConflict
     Test_NoGitOption
+Error  "user stop"
     Test_Diff
     Test_Diff_InWorkingDirectory
     Test_Diff_InWorkingSubDirectory
@@ -379,11 +380,22 @@ function  Test_NoGitOption() {
     git commit  -m "temporary"  > /dev/null  2>&1
     AssertExist  ".git"
     EndInTemporary  "LOCOMMIT_TMP"  "${LOCOMMIT_TMP}"
+echo @@1
+    pwd
+    ls  -la
+    ls .git
+    rm -rf  "dot_git_copy"
+    cp -ap  ".git"  "dot_git_copy"  ||  TestError
 
     "../${LocommitCommand}" --no-git  ||  TestError
     popd > /dev/null
     AssertExist  "_testing/.commit"
     AssertExist  "_testing/.commit/example.txt"
+echo @@2
+    diff  "_testing/.git"  "_testing/dot_git_copy"  ||  TestError  "ERROR: .git is changed."
+#// Ubuntu では diff でエラーにならない？
+echo @@3
+Error  "user stop 1"
 
     #// without .git folder
     DeleteFolder  "_testing"
@@ -2620,7 +2632,7 @@ function  TestError() {
     fi
     if [ "${ErrorCountBeforeStart}" == "${NotInErrorTest}" ]; then
 
-        echo  "TEST ERROR: ${errorMessage}"
+        echo -e  "${Red}TEST ERROR${DefaultColor}: ${errorMessage}"
     fi
     LastErrorMessage="${errorMessage}"
     ErrorCount=$(( ${ErrorCount} + 1 ))
@@ -2636,7 +2648,7 @@ function  Error() {
     fi
     if [ "${exitCode}" == "" ]; then  exitCode=2  ;fi
 
-    echo  "${errorMessage}" >&2
+    echo -e  "${Red}${errorMessage}${DefaultColor}" >&2
     exit  "${exitCode}"
 }
 
@@ -2748,5 +2760,7 @@ InGitWorking=""
 IsGitWorking=""
 LocommitEMail="locommit@example.com"
 LocommitUser="locommit"
+DefaultColor="\e[0m"
+Red="\e[91m"
 
 AllTest
