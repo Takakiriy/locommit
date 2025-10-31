@@ -1973,7 +1973,7 @@ function  Test_CopyFolder() {
 function  CopyFolder() {
     local  source="$1"
     local  destination="$2"
-    local  ignoreDotGit="$3"  #// ${True}, ${False}(default)
+    local  ignoreDotGit="${3-""}"  #// ${True}, ${False}(default)  #// "${1-""}" means that "$1" default is "".
     local  excludeOption="--exclude=./.git"
     source="$( CutLastOf  "${source}"  "/" )"
     destination="$( CutLastOf  "${destination}"  "/" )"
