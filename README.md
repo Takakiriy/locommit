@@ -34,7 +34,7 @@ This `.commit` folder is as the comparison target of `git status` and `git diff`
 graph LR;
     s[ Current folder ];
     d[ .commit folder ];
-    s -. Copy using .gitignore .-> d;
+    s -- Copy using .gitignore --> d;
 ```
 
 Next, if the `.commit` folder exists directly under the current folder,
@@ -50,7 +50,7 @@ flowchart TD;
         c[ .commit folder ];
         d[ .commit_new folder ];
     end
-    s -. Copy using .gitignore .-> d;
+    s -- Copy using .gitignore --> d;
     c <-- Compare --> d;
 ```
 

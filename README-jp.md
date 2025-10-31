@@ -32,7 +32,7 @@ graph LR;
 graph LR;
     s[ カレント フォルダー ];
     d[ .commit フォルダー ];
-    s -. .gitignore を踏まえたコピー .-> d;
+    s -- .gitignore を踏まえたコピー --> d;
 ```
 
 次に、カレント フォルダー の直下に `.commit` フォルダー が存在している場合、
@@ -48,7 +48,7 @@ flowchart TD;
         c[ .commit フォルダー ];
         d[ .commit_new フォルダー ];
     end
-    s -. .gitignore を踏まえたコピー .-> d;
+    s -- .gitignore を踏まえたコピー --> d;
     c <-- 比較 --> d;
 ```
 
